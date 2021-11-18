@@ -1,0 +1,35 @@
+"""Write a Python program that computes the net salary of employee and balance amount of
+a bank account based a transaction log from console input.
+The transaction log format is shown as following: 100 D 200 W
+(Withdrawal is not allowed if balance is going negative. Write functions for withdraw and
+deposit) D means deposit while W means withdrawal. Suppose the following input is supplied
+to the program: 300 D, 300 D, 350 W, 100 D Then, the print the output should be: 350"""
+
+list = []
+while True:
+    data = input("Enter the transction details:")
+    if ('Exit' == data):
+        break
+    list.append(data.split())
+print(list)
+
+balance=0
+
+def deposit(num):
+    global balance
+    balance =balance+num
+
+def withdrawal(num):
+    global balance
+    if(balance>0):
+        balance =balance-num
+    else:
+        print("withrawal is not possible because balance is less.")
+
+for var in list:
+    if(var[0]=='D'):
+        deposit(int(var[1]))
+    elif(var[0]=='W'):
+        withdrawal(int(var[1]))
+
+print("balance=",balance)
